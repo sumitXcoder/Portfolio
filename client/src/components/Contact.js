@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -14,7 +15,12 @@ export const Contact = () => {
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState('Send');
-  const [status, setStatus] = useState({});
+  const [status, setStatus] = useState(null);
+
+  useEffect(()=>{
+    if(status)
+      window.alert(status.message);
+  },[status]);
 
   const onFormUpdate = (category, value) => {
       setFormDetails({
@@ -26,7 +32,7 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    let response = await fetch(`${process.env.SERVER_URL}/contact`, {
+    let response = await fetch(`${process.env.REACT_APP_SERVER}/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -36,12 +42,11 @@ export const Contact = () => {
     setButtonText("Send");
     let result = await response.json();
     setFormDetails(formInitialDetails);
-    if (result.code == 200) {
+    if (result.code === 200) {
       setStatus({ success: true, message: 'Message sent successfully'});
     } else {
       setStatus({ success: false, message: 'Something went wrong, please try again later.'});
     }
-    window.alert(status.message);
   };
 
   return (
