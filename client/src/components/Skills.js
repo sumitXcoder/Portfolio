@@ -13,9 +13,7 @@ import java from "../assets/img/skills/java.jpeg";
 import python from "../assets/img/skills/python.jpeg";
 
 import mysql from "../assets/img/skills/mysql.png";
-import postgresql from "../assets/img/skills/postgresql.png";
 import mongo from "../assets/img/skills/mongo.png";
-import redis from "../assets/img/skills/redis.jpeg";
 
 import git from "../assets/img/skills/git.png";
 
@@ -24,7 +22,7 @@ import docker from "../assets/img/skills/docker.png"
 const mySkills = {
   "Frontend": { "html": html, "css": css, "js": js, "react": r, "redux": redux },
   "Backend": { "node.js": node, "java": java, "python": python },
-  "Database": { "mysql": mysql, "mongodb": mongo, "postgresql": postgresql, "redis": redis },
+  "Database": { "mysql": mysql, "mongodb": mongo },
   "Version Control": { "git and github": git },
   "Containerisation": { "docker": docker }
 }
